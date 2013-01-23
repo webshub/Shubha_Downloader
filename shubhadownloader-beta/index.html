@@ -1,0 +1,431 @@
+<!-- ------------------------------------
+//    Shubha Downloader
+//    Shubha Downloader downloads end of day pricing data from publicly available
+//    sites and converts it in different formats.
+//
+//    Copyright (C) 2013 Shubhalabha.in
+//    Info: webmaster@shubhalabha.in
+//    Contributors: jayant@xnetindia.com,
+//		    prashant@xnetindia.com,
+//		    anand@xnetindia.com
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+//    GNU General Public License for more details.
+//
+//    Permission is hereby granted, free of charge, to any person obtaining a
+//    copy of this software and associated documentation files (the
+//    "Software"), to deal in the Software without restriction, including
+//    without limitation the rights to use, copy, modify, merge copies of the Software, and to permit
+//    persons to whom the Software is furnished to do so, subject to the
+//    following conditions:
+//    The above copyright notice and this permission notice shall be included
+//    in all copies or substantial portions of the Software.
+//    The name of software can not changed. Software can not be sold in any manner.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program. If not, see <http://www.gnu.org/licenses/>
+//
+//    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+//    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+//    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+//    NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+//    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+//    OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+//    USE OR OTHER DEALINGS IN THE SOFTWARE.
+------------------------------------------------------------------------------ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shubhalabha Downloader</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="resources/css/ext-all.css" />
+        <script type="text/javascript" src="ext-all.js"></script>
+
+        <!-- Shared example includes -->
+        <link rel="stylesheet" type="text/css" href="shared/example.css" />
+    
+        <!-- Example includes -->
+        <link rel="stylesheet" type="text/css" href="tabs.css" />
+
+        
+        <!--log file-->
+        <script type="text/javascript" src="log.js"></script>
+        <!-- GC -->
+        <script type="text/javascript" src="shared/states.js"></script>
+        <script type="text/javascript" src="tabs.js"></script>
+        <script type="text/javascript" src="checkout.js"></script>
+        <script type="text/javascript" src="settings.js"></script>
+        <script type="text/javascript" src="contactus.js"></script>
+        <script type="text/javascript" src="downloader.js"></script>
+        <script type="text/javascript" src="process_nse.js"></script>
+        <script type="text/javascript" src="nseforexf.js"></script>
+        <script type="text/javascript" src="nseforexo.js"></script>
+        <script type="text/javascript" src="nsesme.js"></script>
+        <script type="text/javascript" src="nsefutures.js"></script>
+        <script type="text/javascript" src="nseindex.js"></script>
+        <script type="text/javascript" src="nseetf.js"></script>
+        <script type="text/javascript" src="ncdex.js"></script>
+        <script type="text/javascript" src="process_nsema.js"></script>
+
+        <!--MCX js file-->
+		
+		<script type="text/javascript" src="mcx_bhavcopy.js"></script>
+        <script type="text/javascript" src="mcxeodc.js"></script>
+        <script type="text/javascript" src="mcxforex.js"></script>
+        <script type="text/javascript" src="mcxindex.js"></script>
+        <script type="text/javascript" src="mcxspotindex.js"></script>
+        <script type="text/javascript" src="nseleod.js"></script>
+
+        <script type="text/javascript" src="nse_cmbnd_rpt.js"></script>
+        <script type="text/javascript" src="nseoptions.js"></script>
+        <script type="text/javascript" src="mkdir.js"></script>
+        <script type="text/javascript" src="progress-bar.js"></script>
+
+        <script type="text/javascript" src="process_nse_bc.js"></script>
+        <script type="text/javascript" src="process_nse_bh.js"></script>
+	<script type="text/javascript" src="process_nse_hl.js"></script>
+	<script type="text/javascript" src="process_nse_gl.js"></script>
+	<script type="text/javascript" src="process_nse_bm.js"></script>
+	<script type="text/javascript" src="process_nse_ffix.js"></script>
+        <script type="text/javascript" src="nse_blockdeal.js"></script>
+        <script type="text/javascript" src="nse_bulk.js"></script>
+        <script type="text/javascript" src="nse_cmbnd_rpt.js"></script>
+        <script type="text/javascript" src="nse_equity_openint.js"></script>
+        <script type="text/javascript" src="nse_equity_vol.js"></script>
+        <script type="text/javascript" src="bse_blockdeal.js"></script>
+        <script type="text/javascript" src="bse_bulk.js"></script>
+        <!--BSE JS file-->
+        <script type="text/javascript" src="bseequity.js"></script>
+        <script type="text/javascript" src="process_bse_indexdata.js"></script>
+
+        <!--yahoo-->
+        <script type="text/javascript" src="yahoo_fun.js"></script>
+
+
+        <!--output format-->
+        <script type="text/javascript" src="amibroker.js"></script>
+        <script type="text/javascript" src="ninja.js"></script>
+        <script type="text/javascript" src="fcharts.js"></script>
+        <script type="text/javascript" src="metastock.js"></script>
+        <script type="text/javascript" src="advanceget_eod.js"></script>
+
+        <script type="text/javascript" src="shahubhlabha_visit.js"></script>
+
+        <!--MCX India bhavcopy-->
+        <script type="text/javascript" src="mcx_bhavcopy.js"></script>
+        <script type="text/javascript" src="mcx_future_IndexHistory.js"></script>
+
+        <!--NSX EOD Bhavcopy-->
+        <script type="text/javascript" src="process_nsxeod.js"></script>
+
+        <!--save Setting-->
+        <script type="text/javascript" src="save_settings.js"></script>
+        <!--<script type="text/javascript" src="yahoo_eod.js"></script>-->
+        
+        <!--start up function-->
+        <script>
+        //visit('http://list.shubhalabha.in/nsecm.html');
+        function autoload(){
+            var csv = require('ya-csv');
+            var reader = csv.createCsvFileReader('lastupdate.csv',{'separator': ','});
+            reader.addListener('data', function(data) {
+            try{
+            if(data[0]=='lastdate')
+        {
+            /*var frmd=data[1].split('/');
+            var fm,fd;
+            if(parseInt(frmd[0].toString())<10)
+                fm='0'+frmd[0];
+            if(parseInt(frmd[1].toString())<10)
+                fd='0'+frmd[1];
+
+            var curdate=new Date();
+            var mm=curdate.getMonth()+1;
+            if(mm<10)
+                mm='0'+mm;
+            var dd=curdate.getDate();
+            if(dd<10)
+                dd='0'+dd;
+            var yyyy=curdate.getFullYear();
+            var to_date=mm+'/'+dd+'/'+yyyy;
+            var from_date=fm+'/'+fd+'/'+frmd[2];*/
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+            if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} var today = mm+'/'+dd+'/'+yyyy;
+            $("#p3").show();
+            loadevent(data[1],today);
+        }}
+    catch(err)
+    {
+        console.log(err);
+    }
+        });
+        }
+        function loadevent1(){
+            var datefrom=document.getElementById("startDate-inputEl").value;
+            var dateto=document.getElementById("endDate-inputEl").value;
+            if(datefrom=='' || dateto=='')
+                    {
+                Ext.Msg.alert('Message', 'Please select start date and end date.');
+                    }
+              else{
+                if(new Date() < new Date(dateto) || new Date() < new Date(datefrom))
+                {
+                Ext.Msg.alert('Message', 'Start and end date should not be greater than today\'s date');
+                }
+                else
+                    {
+                    loadevent(datefrom,dateto);
+                    $("#p3").show();
+                    }
+                }
+
+        }
+</script>
+        <style>
+            body
+            {
+             font-family: verdana;
+		 width: 828px;
+   
+            }
+            .main{
+                background: white;
+                border: 1px solid lightgray;
+                height:532px;
+                width:828px;    
+            }
+            .topbanner
+            {
+               background-image: url("images/top.jpg");
+               /* background: lightgray; */
+               height: 60px;
+               width: 828px;
+/*               padding:1em;*/
+               text-align: center;
+               
+                
+            }
+            .bottombanner
+            {
+                background-image: url("images/top_banner.jpg");
+               /*background: lightgray;*/
+               height: 60px;
+               width: 828px;
+               text-align: center;
+               
+/*               padding:1em;*/
+            }
+            
+            .ad1{
+                background-image: url("images/add_left.jpg");
+                float: left;
+                height: 450px;
+                width: 120px;
+                /*background: red;*/
+                                   
+            }
+            .ad2
+            {
+                background-image: url("images/add_right.jpg");
+                float: right;
+                height: 450px;
+                width: 120px;
+                
+            }
+            .tbl
+            {
+                width: 828px;
+                height: 510px; 
+            }
+            .tbltd
+            {
+                width: 120px;
+                border-collapse: collapse;
+                border: none;
+		    height: 410px;
+            }
+            .maincontent
+            {
+                height: 470px;
+            }
+            .tabview
+            {
+                margin-top: 0px;
+                margin-left: 0px;
+            }
+            .app
+            {
+                width:720px;
+                vertical-align: top;
+		    height: 410px;
+            }
+            .logs
+            {
+                margin-top: 2px;
+                margin-left: 0px;
+                margin-right: 0px;
+                background: white;
+                height: 245px;
+				
+                overflow: auto;
+                font-size: 11px;
+                border: 1px solid lightblue;
+            }
+            .om{
+             margin-left: 15px;
+             margin-right: 15px;
+            }
+            .progress{
+             margin-top: 2px;
+                margin-left: 10px;
+                margin-right:10px;
+                overflow: hidden;
+                height: 20px;
+            }
+        </style>         <script>
+            $(document).ready(function(){
+				var fs = require('fs');
+
+fs.readFile("node_modules/shubhadownloader/package.json",'utf-8',function(err,data){
+//var arr=new Array()
+var d=data.split(',');
+document.title+=d[1].split('"')[3];
+//console.log(d[1].split('"')[3]);
+});
+
+			/** checking for user register or not **/
+			if(fs.existsSync('reg.txt'))
+			{
+				window.location="registrationform.html";
+			}
+				$("#ad1").hide();
+				$("#ad2").hide();
+				$("#bottombanner").hide();
+                $('#help').load('http://shubhalabha.in/downloader-deluxe/ #post-26');
+
+                $('#disclaimer').load('http://shubhalabha.in/disclaimer/ #post-21');
+
+                $('#aboutus').load('http://shubhalabha.in/about-us/ #post-11');
+
+               // $('#contactus').load('contactus.html #contactus');
+
+               // $('#settings').load('settings.html');
+
+  //*************This code is for setting scroll down always****************//
+
+ //$('.logs').bind('DOMNodeInserted DOMSubtreeModified DOMNodeRemoved', function(event) {
+$('.logs').bind('DOMNodeInserted', function(event) {
+    $('.logs').animate({
+        //scrollTop: $('.logs').prop("scrollHeight")}, 500);
+        //scrollTop: $(".logs").offset().top}, 0);
+        scrollTop:$(".logs")[0].scrollHeight - $(".logs").height()},0);
+  })
+
+/***************end*****************/
+
+});
+function updates()
+{
+document.getElementById("om").innerHTML+='<br>Please wait while updating...';
+  var spawn = require('child_process').spawn,
+  ls    = spawn('update.bat', ['', '']);
+
+  ls.stdout.on('data', function (data) {
+       document.getElementById("om").innerHTML+='<br><font color=green>stdout: </font>' + data;
+  });
+
+  ls.stderr.on('data', function (data) {
+       document.getElementById("om").innerHTML+='<br><font color=red>stderr: </font>' + data;
+  });
+
+  ls.on('exit', function (code) {
+       document.getElementById("om").innerHTML+='<br>child process exited with code ' + code;
+  });
+
+}
+        </script>
+    </head>
+    <body onload="updates();">
+        <div class="main">
+              <div class="topbanner">
+                  <!--Top Banner-->
+               </div>
+               <div class="middle">
+                   <table class="tbl">
+                   <tr><td class="app" align="left">
+                       <div class="maincontent">
+                           <div class="space">
+                               
+                           </div>
+                           <div class="tabview" id="tabs1">
+                            <div id="hometab" class="x-hide-display">    
+                                <div id="home" ></div>
+								 <div class="progress">
+										<div id="p3" style="display: none"></div>
+							     </div>
+								<div class="logs">
+								<div class="om" id="om">
+<br/>                                                                    <p align="justify"><font color="blue">
+
+Shubha Downloader downloads end of day pricing data from publicly available sites and converts it different formats.
+This program comes with ABSOLUTELY NO WARRANTY; for details please see notice.txt in installed folder.
+This is free software, and you are welcome to redistribute it under certain conditions as per notice.txt
+<br/>
+
+Copyright &copy 2013 <u>Shubhalabha.in</u>
+                                                                        </font></p>
+<hr/>
+								</div>
+                       
+                   </div>
+                            </div>
+                            <div id="aboutustab" class="x-hide-display">
+                                <label id="aboutus"></label>
+								<div id="about_adv" style="border:solid;height:100px;"> Post Add Here </div>
+                            </div>
+                            <div id="disclaimertab" class="x-hide-display">
+                                    <label id="disclaimer"></label>
+                                    
+                            </div>
+                            <div id="settingstab" class="x-hide-display">
+                                 <div id="settings" >
+                     
+       
+                                </div>
+                            </div>
+                            <div id="contactustab" class="x-hide-display">
+                                <div id="contactus">
+                     
+       
+                                </div>
+                                    
+                            </div>
+                               
+                             <div id="calendartab" class="x-hide-display" >
+                                   <iframe src="https://www.google.com/calendar/embed?src=indian__en%40holiday.calendar.google.com&ctz=Asia/Calcutta" style="border: 0" width="690" height="400" frameborder="0" scrolling="no"></iframe>
+                            </div>  
+							<div id="helptab" class="x-hide-display" >
+                                   <label id="help"></label>
+                            </div>
+                        </div>
+            
+                          
+                   
+                       </div>
+                   </td><td class="tbltd"><div class="ad2" id="ad2"></div></td></tr></table>
+               </div></div>
+        <iframe id="shubha" src="" style="display: none"></iframe>
+
+    </body>
+</html>
