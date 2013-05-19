@@ -1,0 +1,105 @@
+{
+  "name": "shubhadownloader",
+  "version": "0.0.5",
+  "description": "There is large amount of information available in Financial markets. The markets are always in sync. In today�s world investors find it very difficult to make effective use of information available to them. Shubha Downloader Deluxe is great tool which resolves this problem and helps investor to increase his productivity and stay focused on decision making.   Shubha Downloader Deluxe  enable end user to download market data from available sources and organize it. Shubha Downloader Deluxe is Open source & FREE utility for end users.\r Shubha Downloader have main features as\r End of the day market data from web to your favorite charting applications format.\r Fundamental market data from web to your favorite charting application.\r Market reports from web to your favorite charting application.",
+  "main": "node_modules/shubhadownloader/login.html",
+  "webkit": {
+    "plugin": true,
+	"page-cache": true,
+	"java":true
+  },
+  "window": {
+        "title": "Shubha Downloader",
+        "icon":"icon.png",
+	"toolbar": false,
+        "position": "center",
+        "width": 880,
+        "height": 555,
+        "resizable": false,
+        "show": true,
+		"frame": true
+				
+    },
+	
+  "dependencies": {
+    "async": "~0.1.23",
+    "bindings": "~1.0.0",
+    "buffer-crc32": "~0.2.1",
+    "bytes": "~0.2.0",
+    "adm-zip": "~0.1.9",
+    "connect": "~2.7.2",
+    "connect-flash": "~0.1.0",
+    "cookie-signature": "~0.0.1",
+    "cookie": "~0.0.5",
+    "debug": "~0.7.0",
+    "DomElementType": "~1.1.0",
+    "DomHandler": "~2.0.1",
+    "DomUtils": "~1.0.1",
+    "everyauth": "~0.3.1",
+    "express": "~3.1.0",
+    "google-drive": "~0.0.1",
+    "fast-csv": "~0.0.0",
+    "findit": "~0.1.2",
+    "fresh": "~0.1.0",
+    "htmlparser": "~2.5.1",
+    "methods": "~0.0.1",
+    "libxmljs": "~0.1.2",
+    "node-expat": "~0.2.2",
+    "npm": "~1.1.69",
+    "passport": "~0.1.15",
+    "passport-yahoo-oauth": "~0.1.2",
+    "node-promise": "~0.5.4",
+    "node-zip": "~0.0.2",
+    "pause": "~0.0.1",
+    "node-unzip": "~0.1.0",
+    "readable-stream": "~0.1.0",
+    "range-parser": "~0.0.4",
+    "request": "~2.12.1",
+    "pkginfo": "~0.3.0",
+    "shubhadownloader": "~0.0.5",
+    "pullstream": "~0.0.5",
+    "seq": "~0.3.5",
+    "send": "~0.1.0",
+    "step": "~0.0.5",
+    "underscore": "~1.4.3",
+    "soap": "~0.2.7",
+    "ya-csv": "~0.9.2",
+    "winston": "~0.6.2",
+    "zlib": "~0.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webshub/Shubha_Downloader"
+  },
+  "keywords": [
+    "shubha",
+    "downloader",
+    "NSE",
+    "BSE",
+    "MCX",
+    "Yahoo",
+    "Finance",
+    "Google",
+    "finance",
+    "stock",
+    "market",
+    "technical",
+    "analysis"
+  ],
+  "author": [ {
+   "name": "Aparna Kanitkar",
+   "email": "info@shubhalabha.in",
+  " web": "http://www.shubhalabha.in"
+}],
+"bugs":[ {
+   "name": "Webmaster",
+   "email": "bugs@shubhalabha.in",
+  " web": "https://github.com/webshub/Shubha_Downloader"
+}],
+  "license": "GNU GPL V3",
+  "readmeFilename": "README.md"
+}

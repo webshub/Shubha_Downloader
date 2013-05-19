@@ -1,0 +1,587 @@
+   v1.8.6  Change Log: (Sun Sep 30 2007)
+   ===================
+    *) splitadjust: New tool added to supplement ms2asc tool, this tool
+       can be used to split MS ascii data. Note this tool expects all
+       the fields output by ms2asc tool, ie., --ignore<field> option of
+       ms2asc should not be used with this tool. This tool will split
+	   adjust on (primarykey) 'TICKER_SYMBOL', then on (secondarykey) 'Date'.
+	   This tool does not support intra-day data.
+
+       Usage: ms2asc -i<msdatadir> | perl ms2singleasc.pl | perl splitadjust.pl > splitadjsted.asc
+              or
+	      ms2asc -i<msdatadir> | perl ms2singleasc.pl | perl splitadjust.pl | asc2ms -o splitadjusted
+	      or 
+	      ms2asc -funsplit.asc
+	      sortmsdata -iunsplit.asc -fsplitadjusted.asc
+
+   v1.8.5  Change Log: (Wed Mar 21 2007)
+   ===================
+    *) asc2ms: Fixed issues found by FlawFinder static code analysis 
+	           tool.
+    *) ms2asc: Fixed issues found by FlawFinder static code analysis
+	           tool.
+
+   v1.8.4  Change Log: (Sun Mar 18 2007)
+   ===================
+    *) ms2asc: Fixed a bug in --exactMatch=yes for XMASTER symbols.
+
+   v1.8.2  Change Log: (Wed Dec 13 2006)
+   ===================
+    *) asc2ms: Complied Linux binary under dynamic link mode.
+    *) ms2asc: Complied Linux binary under dynamic link mode.
+
+  Note: v1.8.1 binaries give Seg Fault under Linux
+
+   v1.8.1  Change Log: (Thu Nov 02 2006)
+   ===================
+    *) asc2ms: Changed parallel execution to happen between
+	load price data and processing of data, instead of initialize 
+	master data and load price. This has dramatically increased the
+	speed of completion for large amount of price data conversions.
+
+	Note: Did this only for non-traverse option.
+
+   v1.8.0  Change Log: (Mon Oct 30 2006)
+   ===================
+    *) asc2ms: Added parallel execution of load price data and
+	intialize master database.
+	*) asc2ms: Added new progress bar indicator based on percentage 
+	complete, rather than dots.
+
+   v1.7.9  Change Log: (Sun Oct 29 2006)
+   ===================
+    *) asc2ms: Added Thread support into the tool (using pthread lib)
+	*) asc2ms: Now has improved priority handling.
+	*) asc2ms: Added --forceWrite option, you could use this option
+	if your database has been locked by some other program.
+
+	Usage:
+	asc2ms -f <ascii-file> -o <directory> --forceWrite=yes etc.,
+
+   v1.7.8  Change Log: (Mon Oct 09 2006)
+   ===================
+    *) asc2ms: Performance Optimizations done using Intel VTune.
+    *) ms2asc: Performance Optimizations done using Intel VTune.
+
+   v1.7.7  Change Log: (Sun Aug 20 2006)
+   ===================
+    *) ms2asc: Added new option --ignoreHeader to avoid header line from
+       getting printed with the ascii file. By default --ignoreHeader=NO.
+	   If [-f <outfile>] option is set to some valid file then headerline
+	   will be saved in <outdir>/headerline_<outfile> else if -f is set to
+	   '-' or 'notset' then headerline will be printed on standard error
+	   file.
+
+   v1.7.6  Change Log: (Tue Jul 18 2006)
+   ===================
+    *) ms2asc: Added new option --descMaster to output contents of MASTER
+       and XMASTER files.
+
+       Usage: ms2asc --descMaster -f master_details.txt
+
+   v1.7.5  Change Log: (Sun Jul 09 2006)
+   ===================
+    *) sortmsdata: New tool added to supplement ms2asc tool, this tool
+       can be used to sort MS ascii data. Note this tool expects all
+       the fields output by ms2asc tool, ie., --ignore<field> option of
+       ms2asc should not be used with this tool. This tool will sort
+       on (primarykey) 'TICKER_SYMBOL', then on (secondarykey) 'Date'
+       then on (tertiarykey) 'TIME'.
+
+       Usage: ms2asc -i<msdatadir> | perl sortmsdata > sortedfile.asc
+              or
+	      ms2asc -i<msdatadir> | perl sortmsdata | asc2ms -o sortedms
+	      or 
+	      ms2asc -funsorteddata.asc
+	      sortmsdata -iunsorteddata.asc -fsorteddata
+
+    *) ms2singleasc: Added -o option to create new directories and
+       -h option. Also need to make sure that this tool can only be
+       used if tickers of the same type are grouped together, in other
+       words it works fine with ms2asc's output.
+
+    *) ms2singleasc: Added changes to replace '$' , '*' and ':' to 
+       '_' from the ticker symbol
+
+   v1.7.4  Change Log: (Mon Jul 03 2006)
+   ===================
+    *) ms2singleasc: New tool added to supplement ms2asc tool. This tool
+       can be used to created single ticker ascii files, one for each
+       ticker.
+
+       Usage: ms2asc -i<msdatadir> | perl ms2singleasc -oindividualascii
+
+   v1.7.3  Change Log: (Mon Jun 05 2006)
+   ===================
+    *) asc2ms: Made a few optimizations to the code, 
+       Now asc2ms completes noticeably faster!.
+
+   v1.7.2  Change Log: (Mon May 22 2006)
+   ===================
+    *) asc2ms: Fixed a bug, in Windows version some times last
+       line was not being converted.
+
+   v1.7.1  Change Log: (Sat May 06 2006)
+   ===================
+    *) asc2ms: Added progress bar indicator.
+
+    *) ms2asc: Added progress bar indicator.
+
+   v1.7.0  Change Log: (Fri May 05 2006)
+   ===================
+    *) asc2ms: Default input file now is standard input (stdin)
+       
+       If -f<fileno> option is not given it defaults to stdin.
+
+       Error messages and output is now sent to stderr rather
+       than stdout.
+
+    *) ms2asc: Default output file is standard output (stdout).
+
+    *) ms2asc: Errors are now output to stderr.
+
+    Note: With these changes asc2ms, ms2asc can be used with pipes
+          to input data and take data from.
+
+   v1.6.8  Change Log: (Mon Apr 24 2006)
+   ===================
+    *) asc2ms: Added check to return error if date is not specified
+       in either header line or command line.
+
+   v1.6.7  Change Log: (Sun Apr 23 2006)
+   ===================
+    *) asc2ms: Added support for BSE bhav copy (India)
+    Note: BSE bhavcopy does not provide date, hence need
+          to provide date from command line.
+
+    Ex: asc2ms -fEQ210406.CSV -d "21-APR-2006" -o test --verbosity=high
+
+   v1.6.6  Change Log: (Wed Apr 19 2006)
+   ===================
+    *) asc2ms: Fixed a bug, while providing date from user
+       with --date option and data having header line, date
+       was not being taken properly.
+
+   v1.6.5  Change Log: (Sat Mar 18 2006)
+   ===================
+    *) asc2ms: Fixed a bug in large volume data crashing MS.
+
+   v1.6.4  Change Log: (Mon Oct 31 2005)
+   ===================
+    *) asc2ms: Fixed some memory leaks.
+
+   v1.6.3  Change Log: (Fri Aug 26 2005)
+   ===================
+    *) asc2ms: Removed support for SERIES "N1" and
+       added support for SERIES "BT" in NSE bhav copy (India)
+
+   v1.6.2  Change Log: (Fri Jun 02 2005)
+   ===================
+    *) Added option to update only the last record.
+
+   v1.6.1  Change Log: (Sun Mar 06 2005)
+   ===================
+    *) asc2ms: Added support to store 4000 scrips in
+       a single directory.
+
+    *) asc2ms: Added support for SERIES "IX" and "N1"
+       in NSE bhav copy (India).
+
+    *) asc2ms: Fixed a bug in startDate of XMASTER records.
+
+    *) asc2ms: Optimized Initialize Master, Xmaster database.
+
+    *) asc2ms/ms2asc: Changed the default to --verbosity=medium
+
+   v1.6.0  Change Log: (Mon Mar 03 2005)
+   ===================
+    *) asc2ms: Added XMASTER support.
+
+   v1.5.20 Change Log: (Sat Feb 26 2005)
+   ===================
+    *) asc2ms/ms2asc: Added the following new option:
+
+       [--verbosity=high|medium|low]
+
+       The default is --verbosity=low
+
+       This option is useful to select the level of
+       details output on the console.
+
+    *) ms2asc: Added the following new option:
+
+       [--exactmatch=yes|no]
+
+       The default is --exactmatch=no
+
+       This option is useful in conjunction with --symbolContains
+       and --nameContains options to extract only an exactmatch.
+
+    *) asc2ms: Fixed a bug: While converting NSE bhav copy only 
+       series "EQ" and "BE" will be converted to MS format.
+
+   v1.5.19 Change Log: (Mon Feb 21 2005)
+   ===================
+    *) ms2asc: Added the following new options.
+       [--ignoreTicker=yes|no]
+       [--ignoreName=yes|no]
+       [--ignorePer=yes|no]
+       [--ignoreTime=yes|no]
+       [--ignoreOpen=yes|no]
+       [--ignoreOpenInt=yes|no]
+
+       These options could be used to ignore some fields from
+       the output price data ascii file.
+
+       The names themselves are self explanatory,
+       If --ignoreTicker=yes is passed then ticker name will
+       not be output in the price data file.
+
+       By default they are all set to "no". That means all fields
+       will be output.
+
+   v1.5.18 Change Log: (Sat Feb 19 2005)
+   ===================
+    *) asc2ms: Added support for Record with length
+       5, 6, Intraday 6, Intraday 7, fields.
+
+    *) asc2ms: Added new option to ignore "Open Interest"
+       field. [--ignoreOpenInterest=yes|no]
+
+    The default is --ignoreOpenInterest=no.
+
+    Note that this option only affects newly created price data
+    files. If old price data has open interest field, open interest
+    field will not be ignored.
+
+    *) asc2ms: Added new option to ignore "Open"
+       field. [--ignoreOpen=yes|no]
+
+    The default is --ignoreOpen=no.
+
+    Note that this option only affects newly created price data
+    files. If old price data has open field, open field will not
+    be ignored.
+
+    If "Open" is ignored, then "Open Interest" will also be ignored, this
+    will happen even if explicitly --ignoreOpenInterest is set to yes.
+
+    *) asc2ms: Optimized finding new record file numbers, this 
+       avoids searching for duplicate records or holes if there
+       are none.
+
+    *) ms2asc: Fixed Bug: Open price output was not proper for
+       6 field record.
+
+   v1.5.17 Change Log: (Mon Feb 14 2005)
+   ===================
+    *) asc2ms: Reduced per line allocated memory to 128
+       bytes and increased number of lines to 0x1FFFFF.
+
+    *) ms2asc: Now supports reading XMASTER price data.
+
+   v1.5.16 Change Log: (Sun Feb 06 2005)
+   ===================
+    *) asc2ms: Bug Fix in dop file name, dop file name
+       was getting negative names for records > 127 fixed.
+
+   v1.5.15 Change Log: (Sat Feb 05 2005)
+   ===================
+    *) asc2ms: Internal representation of file record
+       hash now uses dynamic memory allocation.
+       
+    *) asc2ms: Max number of ascii lines which can be
+       processed is now increased to 0xFFFFF number of lines.
+
+    *) asc2ms: Now uses unused record numbers between used
+       record numbers, like if F1.DAT, F3.DAT are present
+       the new ticker file gets F2.DAT instead of F4.DAT.
+
+    *) ms2asc: Removed a debug print getting printed.
+
+   v1.5.14 Change Log: (Sun Jan 30 2005)
+   ===================
+    *) asc2ms: Added [--dopFiles=|-p yes|no] option.
+
+    This option can be used to create F*.DOP Files.
+
+    The default is --dopFiles=no.
+
+    Note that this option only affects newly created price data
+    files.  F*.DOP files for existing price data files are not
+    affected.
+
+   v1.5.13 Change Log: (Sat Jan 26 2005)
+   ===================
+    *) asc2ms: In case of traverseRecord option (-t), the tool
+       now creates apart from A-Z directories 0-9 directories
+       based on the first letter of the symbol, for any other
+       character the ticker would be put under '^' directory.
+
+    *) ms2asc: the headerline is now changed to use <DATE> instead
+       of <DTYYYYMMDD>, it still outputs data in YYYYMMDD format.
+
+    *) asc2ms: Fixed bugs related to missing data files, asc2ms
+       now handles missing data files properly.
+
+    *) asc2ms: Detects duplicate records in the master file,
+       makes an attempt to reuse them if the symbol is different
+       from the other record. If the detected duplicate record
+       has the same symbol then this record will be ignored.
+
+   v1.5.12 Change Log: (Sat Jan 15 2005)
+   ===================
+    *) Now using dynamic memory allocation for
+       asc_line pointers.
+
+    *) Fixed a bug in -rupdateRecord Logic.
+
+   v1.5.11 Change Log: (Wed Jan 05 2005)
+   ===================
+    *) Added [--createNewFiles=|-c yes|no] option.
+    
+    This option could be used to tell the tool not
+    to create new symbol data files.
+
+    By default it is --createNewFiles=yes.
+    
+   v1.5.10 Change Log: (Tue Jan 04 2005)
+   ===================
+    *) Fixed a bug <date> format was assuming date to be in
+    <dd/mm/yyyy> whereas standard metastock usage is to expect
+    in <mm/dd/yyyy> fixed this. If the date is in dd/mm/yyyy
+    then <dtdd/mm/yyyy> could be used instead.
+    
+   v1.5.9 Change Log: (Sat Jan 01 2005)
+   ==================
+    *) Added support for header line field <dtmm/dd/yy>, <dtmm/dd/yyyy>
+       and TDATE formats.
+
+       TDATE is again mm/dd/yyyy format data.
+
+    *) Added support for "DELIVERY" header line field, which is a
+       synonym for "OPENINTEREST" field.
+
+   v1.5.8 Change Log: (Fri Dec 31 2004)
+   ==================
+    *) asc2ms now supports updateRecord option if recordFile 
+       exists.
+       
+       The option is:
+ [--recordFileExist=|-r appendRecord|updateRecord|recordReplace|fileReplace]
+
+       UpdateRecord option is useful if you need to update some price 
+       data fields like name/open/high/low/close/volume/openinterest
+       and at the same time you want to preserve other fields intact.
+
+       Note: You cannot use this option to update ticker-symbol
+             date and time fields, since these are used to identify
+	     the record (record key fields).
+
+   v1.5.7 Change Log: (Fri Dec 24 2004)
+   ==================
+    *) asc2ms and ms2asc now support priority levels.
+       Supported priority levels are high/medium/low.
+
+       This feature is useful to reduce load on the system
+       when its used to convert data in bulk, in batch mode.
+
+       The option is [--priorityLevel=|-l high|medium|low]
+
+       If option is not specified then by default it is high.
+
+   v1.5.6 Change Log: (Mon Dec 20 2004)
+   ==================
+    *) ms2asc now supports purging of zero volume data,
+       a new option [--purgeZeroVol|-p] has been introduced
+       to achieve the same.
+
+    *) ms2asc now supports selective price data output,
+       it supports the following options:
+       [--symbolContains=|-s <ticker_symbol>]
+       [--nameContains=|-n <ticker_name>]
+       [--printFromDate=|-d <date>]
+       [--printUptoDate=|-u <date>]
+
+       For example, if --symbolContains="INTC" is passed, then
+       all symbols containing the words "INTC" will be output
+       into the ascii file.
+
+       Similarly, if --nameContains="Intel" is passed, then all
+       ticker names containing the words "Intel" will be output
+       into the ascii file.
+
+       Note: the letters are not case sensitive so "INTC" and "intc"
+       both are equivalent.
+
+       If --printDateFrom="27-Apr-1975" is passed, then all 
+       symbols with dates greater than or equal to the above date
+       will be output into the ascii file.
+
+       If --printDateUpto="27-Apr-1975" is passed, then all 
+       symbols with dates less than or equal to the above date
+       will be output into the ascii file.
+
+       Note: The date format could be any of the supported date
+       formats, for ex: "19750427", "27/04/1975", "750427" etc.,
+
+    *) asc2ms has a bug fix in ticker name. Ticker name was
+       being written same as ticker symbol, fixed it.
+
+   v1.5.5 Change Log: (Wed Dec 15 2004)
+   ==================
+    *) asc2ms now supports [--reverseOrder|-b] option.
+    If this option is enabled, then the data is read from
+    last line first. This option is useful to convert Yahoo!
+    price data, which is stored as latest price first format.
+
+   v1.5.4 Change Log: (Fri Dec 10 2004)
+   ==================
+    *) asc2ms now generates EMASTER file along with MASTER file.
+
+   v1.5.3 Change Log: (Sun Dec  5 2004)
+   ==================
+    *) Implemented the following header line format:
+
+ DateTime,Open,High,Low,Close,VAvg,Qty,Value,Trades,OpenInt,Cnt
+
+       DateTime field is just a time format field
+       in the following "03:50:25 p" or "10:50:25 a" 
+       format.
+
+       VAvg, Value, Trades are ignored.
+
+       Note this is an intraday tick data format, since
+       date is the same for all the prices.
+
+    *) Now empty fields are recognized, and treated as such.
+
+    *) Header fields "Cnt" or "Index" is now used to 
+       sort based on the index.
+
+    *) date field can now be specified on the command line.
+       --date="05-Dec-2004",  -d "05-Dec-2004", -d "05/12/2004",
+       -d "20041205" etc., are valid date field formats.
+
+   v1.5.2 Change Log: (Sat Nov 13 2004)
+   ==================
+    *) Implemented the following header line format
+
+        Index,Date Time,Open,High,Low,Close,Volume
+
+        Here 'Index' field is ignored, and is as good
+        as XX field. Date and Time could be in any of the
+        below mentioned formats.
+
+        Date: mmddyy, mmddyyyy, dd/mm/yy, dd/mm/yyyy, dd-mm-yy
+        Time: hh:mm:ttt, hh:mm:ss, hhmm, hhmmss, hhmmttt etc.,
+
+        This header line format is useful for those who use
+        exported csv file from IndiaBulls website.
+
+   v1.5.1 Change Log: (Sat Nov 6 2004)
+   ==================
+    *) Implemented ignoring of unused or dontcare fields
+       which can be represented by XX in the header line.
+       like <symbol>,<xx>,<per>,<open>,<high>,<low> ...
+       or   <symbol>,XX,<per>,<open> etc.,
+
+    *) Now NSE (National Stock Exchange of India) bhav copy
+       *.csv format, can be directly converted to Metastock format.
+       Bhav copy csv format is as below:
+
+ SYMBOL,SERIES,OPEN,HIGH,LOW,CLOSE,LAST,PREVCLOSE,TOTTRDQTY,TOTTRDVAL,TIMESTAMP,   
+      So the above header line format is now supported, where:
+      SERIES, LAST, PREVCLOSE, TOTTRDVAL fields are ignored presently
+      
+      In case you need to use LAST instead of exchange adjusted close price
+      CLOSE then you could rename LAST to CLOSE and rename CLOSE to XX
+      to ignore the same.
+
+   v1.5 Change Log: (Sun Oct 31 2004)
+   ================
+    *) Now asc2ms converts Yahoo! downloaded .csv format
+
+   v1.4.3 Change Log: (Sun Oct 31 2004)
+   ==================
+    *) Now asc2ms uses date format in <DTDD/MM/YYYY> format
+
+   v1.4.2 Change Log: (Sun Oct 24 2004)
+   ==================
+    *) Now asc2ms uses header line in ascii data file
+
+   v1.4.1 Change Log: (Sun Oct 24 2004)
+   ==================
+    *) Now ms2asc outputs data with a header in the
+       following format:
+       "<TICKER>,<NAME>,<PER>,<DATE>,<TIME>,<OPEN>,<HIGH>,<LOW>,<CLOSE>,<VOL>,<OPENINT>"
+
+   v1.4 Change Log: (Sat Oct 23 2004)
+   ================
+    *) Implemented Traverse destination folder option in
+       asc2ms utility.
+
+   v1.3.3 Change Log: (Wed Oct 20 2004)
+   ==================
+    *) Fixed a bug: If record file already present duplicate
+       records used to get created fixed.
+
+   v1.3.2 Change Log: (Mon Oct 18 2004)
+   ==================
+    *) Fixed a bug: Now checking for memory error in
+       asc2ms.c file.
+    *) Increased number of records to process 
+       upto 0x5FFFF ascii lines.
+    *) Not including star in symbol name while creating
+       an ascii file, instead creating ascii line in <PER>
+       line format. Previously was using <I>.
+    *) ms2asc in windows now uses carriage return and line feed
+       in the created ascii file for newlines.
+
+   v1.3.1 Change Log: (11th July 2004)
+   ==================
+    *) Fixed a bug: New record file containing duplicate
+       records were not gettting replaced, fixed.
+    *) ms2asc now increments second field once it finds
+       first occurence of 59, if next record also has 59
+       in it's 'second' field it is incremented by one.
+
+   v1.3 Change Log: (7th July 2004)
+   ================
+    *) If output master directory specified is not present
+       it is created.
+    *) In "HHMMTTT" "HHMMSS" or "HH:MM:SS" field tick/second
+       field is limited to 59, if > 59.
+
+   v1.2 Change Log: (4th July 2004)
+   ================
+    *) Now supports, if data file exits: replace record, 
+       replace file policies apart from append record policy. 
+
+   v1.1 Change Log: (30th June 2004)
+   ================
+    *) Added (MASTER, Fxxx.DAT) input/output directory option. 
+    *) Y2K issue resolved now accepts ascii file both in
+    YYYYMMDD and YYMMDD format, ascii file having both
+    formats together is now supported, that is one line
+    with YYYYMMDD and one line with YYMMDD format is supported.
+    *) Pivot year for YYMMDD is 30, i.e., if year >= 30 then
+       considered as 19xx, else 20xx ex: 290305 => 20290305,
+       310305 => 19310305 
+    *) Now errors are returned with exit(1)
+    *) All errors are displayed now only if verbose mode is set.
+    *) Now supports SYMB,PER,YYYYMMDD,HH:MM:SS,O,H,L,C,V format
+    *) Now supports SYMB,PER,YYYYMMDD,HHMMSS,O,H,L,C,V format
+    *) Now supports SYMB,I,YYYYMMDD,HH:MM:SS,O,H,L,C,V format
+    *) Now supports SYMB,I,YYYYMMDD,HHMMSS,O,H,L,C,V format
+
+   v1.0 Change Log: (26th June 2004)
+   ===============
+    *) Initial release of MetaStock(r) Command Line Data Conversion Utils.
+    *) Supports Conversion of ASCII (SYMB,D,YYMMDD,O,H,L,C,V,OI) to Binary.
+    *) Supports Conversion of ASCII (SYMB,I,YYMMDD,HH:MM,O,H,L,C,V,OI)
+       to Binary.
+    *) Supports Conversion of (MASTER, Fxxx.DAT) files to MetaStock ASCII
+       eight filed format (SYMB,D,YYMMDD,O,H,L,C,V,OI) or 
+       (SYMB,I,YYMMDD,HH:MM,O,H,L,C,V,OI)
+

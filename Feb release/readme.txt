@@ -1,0 +1,4 @@
+std. headers for EOD data 
+TICKER,NAME,DATE,OPEN,HIGH,LOW,CLOSE,VOLUME,OPENINT
+std. headers for Intraday historical data
+TICKER,NAME,DATE,TIME,OPEN,HIGH,LOW,CLOSE,VOLUME,OPENINT
